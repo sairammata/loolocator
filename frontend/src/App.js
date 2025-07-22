@@ -95,10 +95,7 @@ function App() {
   const handleFiltersChange = (radius, accessibility) => {
     setSearchRadius(radius);
     setAccessibilityOnly(accessibility);
-    
-    if (userLocation) {
-      findNearestWashrooms();
-    }
+    // The useEffect will automatically trigger when these state values change
   };
 
   // Load initial data with demo location (NYC)
