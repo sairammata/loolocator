@@ -83,7 +83,7 @@ async def seed_washroom_data():
         {
             "id": str(uuid.uuid4()),
             "name": "Central Park Restroom",
-            "location": {"latitude": 40.785091, "longitude": -73.968285},
+            "location": {"type": "Point", "coordinates": [-73.968285, 40.785091]},
             "address": "Central Park, New York, NY 10024",
             "description": "Clean public restroom in Central Park",
             "amenities": ["wheelchair_accessible", "baby_changing", "hand_sanitizer"],
@@ -96,7 +96,7 @@ async def seed_washroom_data():
         {
             "id": str(uuid.uuid4()),
             "name": "Times Square Public Restroom",
-            "location": {"latitude": 40.758896, "longitude": -73.985130},
+            "location": {"type": "Point", "coordinates": [-73.985130, 40.758896]},
             "address": "Times Square, New York, NY 10036",
             "description": "Public restroom facility in Times Square area",
             "amenities": ["wheelchair_accessible", "air_conditioning"],
@@ -109,7 +109,7 @@ async def seed_washroom_data():
         {
             "id": str(uuid.uuid4()),
             "name": "Brooklyn Bridge Park Restroom",
-            "location": {"latitude": 40.700292, "longitude": -73.996900},
+            "location": {"type": "Point", "coordinates": [-73.996900, 40.700292]},
             "address": "Brooklyn Bridge Park, Brooklyn, NY 11201",
             "description": "Modern restroom facility with great East River views",
             "amenities": ["wheelchair_accessible", "baby_changing", "outdoor_access"],
@@ -122,7 +122,7 @@ async def seed_washroom_data():
         {
             "id": str(uuid.uuid4()),
             "name": "Washington Square Park Restroom",
-            "location": {"latitude": 40.730823, "longitude": -73.997332},
+            "location": {"type": "Point", "coordinates": [-73.997332, 40.730823]},
             "address": "Washington Square Park, New York, NY 10012",
             "description": "Public restroom in Greenwich Village",
             "amenities": ["wheelchair_accessible"],
@@ -135,7 +135,7 @@ async def seed_washroom_data():
         {
             "id": str(uuid.uuid4()),
             "name": "High Line Park Restroom",
-            "location": {"latitude": 40.748441, "longitude": -74.004862},
+            "location": {"type": "Point", "coordinates": [-74.004862, 40.748441]},
             "address": "High Line Park, New York, NY 10011",
             "description": "Modern restroom facility on the High Line",
             "amenities": ["wheelchair_accessible", "baby_changing", "water_fountain"],
