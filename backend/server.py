@@ -268,10 +268,21 @@ async def add_washroom(washroom: Washroom):
         washroom_data["id"] = str(uuid.uuid4())
         washroom_data["created_at"] = datetime.utcnow()
         
+        # Convert lat/lng to GeoJSON format for storage
+        location = washroom_data["location"]
+        washroom_data["location"] = {
+            "type": "Point",
+            "coordinates": [location["longitude"], location["latitude"]]  # GeoJSON is [lng, lat]
+        }
+        
         result = await washrooms_collection.insert_one(washroom_data)
         
         if result.inserted_id:
-            return Washroom(**washroom_data)
+            # Return the original format to frontend
+            return_data = washroom.dict()
+            return_data["id"] = washroom_data["id"]
+            return_data["created_at"] = washroom_data["created_at"]
+            return Washroom(**return_data)
         else:
             raise HTTPException(status_code=500, detail="Failed to create washroom")
             
