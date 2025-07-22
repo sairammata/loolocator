@@ -234,7 +234,25 @@ async def get_all_washrooms(
         
         response_data = []
         for washroom in washrooms:
-            response_data.append(Washroom(**washroom))
+            # Convert GeoJSON coordinates back to lat/lng for frontend
+            coordinates = washroom["location"]["coordinates"]
+            washroom_data = {
+                "id": washroom["id"],
+                "name": washroom["name"],
+                "location": {
+                    "latitude": coordinates[1],  # GeoJSON is [lng, lat]
+                    "longitude": coordinates[0]
+                },
+                "address": washroom["address"],
+                "description": washroom["description"],
+                "amenities": washroom["amenities"],
+                "accessibility": washroom["accessibility"],
+                "rating": washroom["rating"],
+                "hours": washroom["hours"],
+                "verified": washroom["verified"],
+                "created_at": washroom["created_at"]
+            }
+            response_data.append(Washroom(**washroom_data))
         
         return response_data
         
