@@ -195,10 +195,15 @@ async def get_nearest_washrooms(
         # Format response
         response_data = []
         for washroom in washrooms:
+            # Convert GeoJSON coordinates back to lat/lng for frontend
+            coordinates = washroom["location"]["coordinates"]
             washroom_data = {
                 "id": washroom["id"],
                 "name": washroom["name"],
-                "location": washroom["location"],
+                "location": {
+                    "latitude": coordinates[1],  # GeoJSON is [lng, lat]
+                    "longitude": coordinates[0]
+                },
                 "address": washroom["address"],
                 "description": washroom["description"],
                 "amenities": washroom["amenities"],
