@@ -288,7 +288,26 @@ async def get_washroom(washroom_id: str):
         if not washroom:
             raise HTTPException(status_code=404, detail="Washroom not found")
         
-        return Washroom(**washroom)
+        # Convert GeoJSON coordinates back to lat/lng for frontend
+        coordinates = washroom["location"]["coordinates"]
+        washroom_data = {
+            "id": washroom["id"],
+            "name": washroom["name"],
+            "location": {
+                "latitude": coordinates[1],  # GeoJSON is [lng, lat]
+                "longitude": coordinates[0]
+            },
+            "address": washroom["address"],
+            "description": washroom["description"],
+            "amenities": washroom["amenities"],
+            "accessibility": washroom["accessibility"],
+            "rating": washroom["rating"],
+            "hours": washroom["hours"],
+            "verified": washroom["verified"],
+            "created_at": washroom["created_at"]
+        }
+        
+        return Washroom(**washroom_data)
         
     except HTTPException:
         raise
